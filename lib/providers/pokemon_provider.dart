@@ -80,6 +80,13 @@ class PokemonProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearFilters() {
+    _searchQuery = '';
+    _showOnlyFavorites = false;
+    _applyFilters();
+    notifyListeners();
+  }
+
   void _applyFilters() {
     _filteredPokemons = _pokemons.where((pokemon) {
       bool matchesSearch = _searchQuery.isEmpty ||

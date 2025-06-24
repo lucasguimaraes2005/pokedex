@@ -7,6 +7,7 @@ class DatabaseService {
 
   Future<void> insertPokemon(Pokemon pokemon) async {
     final box = await _box;
+    pokemon.localId = DateTime.now().millisecondsSinceEpoch;
     await box.put(pokemon.apiId, pokemon.toMap());
   }
 

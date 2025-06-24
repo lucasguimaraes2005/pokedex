@@ -16,19 +16,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = context.read<PokemonProvider>();
-      provider.toggleFavoritesFilter(); // Ativa o filtro de favoritos
       provider.loadPokemons();
     });
-  }
-
-  @override
-  void dispose() {
-    // Remove o filtro de favoritos ao sair da tela
-    final provider = context.read<PokemonProvider>();
-    if (provider.showOnlyFavorites) {
-      provider.toggleFavoritesFilter();
-    }
-    super.dispose();
   }
 
   @override
@@ -45,6 +34,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
+          // Filtra apenas os favoritos localmente, sem afetar o estado global
           final favoritePokemons = provider.pokemons.where((p) => p.isFavorite).toList();
 
           if (favoritePokemons.isEmpty) {
