@@ -34,7 +34,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Filtra apenas os favoritos localmente, sem afetar o estado global
           final favoritePokemons = provider.pokemons.where((p) => p.isFavorite).toList();
 
           if (favoritePokemons.isEmpty) {

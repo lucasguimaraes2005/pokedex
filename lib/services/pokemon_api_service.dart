@@ -36,25 +36,4 @@ class PokemonApiService {
     }
     return null;
   }
-
-  Future<List<Map<String, dynamic>>> searchPokemonList(String query) async {
-    try {
-      final response = await _dio.get('$baseUrl/pokemon?limit=1000');
-      
-      if (response.statusCode == 200) {
-        final List results = response.data['results'];
-        return results
-            .where((pokemon) => pokemon['name'].toString().toLowerCase().contains(query.toLowerCase()))
-            .take(20)
-            .map<Map<String, dynamic>>((pokemon) => {
-              'name': pokemon['name'],
-              'url': pokemon['url'],
-            })
-            .toList();
-      }
-    } catch (e) {
-      print('Erro ao buscar lista de Pokémon: $e');
-    }
-    return [];
-  }
 }

@@ -33,15 +33,11 @@ class PokemonProvider with ChangeNotifier {
     return await _apiService.getPokemon(nameOrId);
   }
 
-  Future<List<Map<String, dynamic>>> searchPokemonList(String query) async {
-    return await _apiService.searchPokemonList(query);
-  }
-
   Future<bool> addPokemon(Pokemon pokemon) async {
     try {
       final isAlreadyCaptured = _pokemons.any((p) => p.apiId == pokemon.apiId);
       if (isAlreadyCaptured) {
-        return false; // Pokémon já foi capturado
+        return false;
       }
       await _dbService.insertPokemon(pokemon);
       _pokemons.add(pokemon);

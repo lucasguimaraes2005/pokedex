@@ -234,8 +234,8 @@ class PokemonDetailScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 context.read<PokemonProvider>().removePokemon(pokemon);
-                Navigator.pop(context); // Fecha o dialog
-                Navigator.pop(context); // Volta para a tela anterior
+                Navigator.pop(context);
+                Navigator.pop(context); 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${pokemon.capitalizedName} removido da coleção!'),
